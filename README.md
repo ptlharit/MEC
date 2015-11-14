@@ -1,2 +1,2 @@
 # MEC
-McMaster Engineering Competition: Programming
+McMaster Engineering Competition | 2015 | Programming
