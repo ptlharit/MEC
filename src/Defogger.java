@@ -27,9 +27,9 @@ public class Defogger {
 	}
 
 	/// Returns ON/OFF by examining the status of the Car's Defogger System
-	public Mode getCurrent_defogger_mode()
+	public String getCurrent_defogger_mode()
 	{
-		return this.car_defogger_mode;
+		return (car_defogger_mode == Mode.ON) ? "ON" : "OFF";
 	}
 
 	/// Sets the Car's Defogger System Mode to be ON or OFF, as specified by the final_mode value
@@ -42,13 +42,13 @@ public class Defogger {
 	public void TurnON()
 	{
 		setCurrent_defogger_mode(Mode.ON); // Turn ON the defogger
-		System.out.println("Your Car Defogger is " + getCurrent_defogger_mode().toString());
+		System.out.println("Your Car Defogger is " + getCurrent_defogger_mode());
 	}
 
 	/// This function turns OFF the Defogger in the car
 	public void TurnOFF()
 	{
 		setCurrent_defogger_mode(Mode.OFF); // Turn OFF the defogger
-		System.out.println("Your Car Defogger is " + getCurrent_defogger_mode().toString());
+		System.out.println("Your Car Defogger is " + getCurrent_defogger_mode());
 	}
 }

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Hashtable;
 
 public class Car extends JFrame {
 
@@ -17,25 +18,87 @@ public class Car extends JFrame {
     }
 
     public void createScreen() {
-        window = new JPanel(new GridLayout(1, 2, 10, 10));
+        window = new JPanel(new GridLayout(4, 2, 0, 10));
 
-        JLabel radio = new JLabel("Radio");
-        JLabel radioStatus = new JLabel("OFF");
+        JLabel radioModeLabel = new JLabel("Radio: ");
+        JLabel radioMode = new JLabel("OFF");
 
-        window.add(radio);
-        window.add(radioStatus);
+        JLabel radioStationLabel = new JLabel("Radio Station: ");
+        JLabel radioStation = new JLabel("1.50");
+
+        JLabel heatLevelLabel = new JLabel("Heat Level: ");
+        JSlider heatLevel = new JSlider(JSlider.HORIZONTAL, 0, 5, 0);
+        heatLevel.setMinorTickSpacing(1);
+        heatLevel.setPaintTicks(true);
+        heatLevel.setSnapToTicks(true);
+
+        Hashtable labelTable = new Hashtable();
+        labelTable.put(new Integer(0), new JLabel("0"));
+        labelTable.put(new Integer(1), new JLabel("1"));
+        labelTable.put(new Integer(2), new JLabel("2"));
+        labelTable.put(new Integer(3), new JLabel("3"));
+        labelTable.put(new Integer(4), new JLabel("4"));
+        labelTable.put(new Integer(5), new JLabel("5"));
+        heatLevel.setLabelTable(labelTable);
+        heatLevel.setPaintLabels(true);
+
+        JLabel defoggerModeLabel = new JLabel("Defogger: ");
+        JLabel defoggerMode = new JLabel("OFF");
+
+        window.add(radioModeLabel);
+        window.add(radioMode);
+
+        window.add(radioStationLabel);
+        window.add(radioStation);
+
+        window.add(heatLevelLabel);
+        window.add(heatLevel);
+
+        window.add(defoggerModeLabel);
+        window.add(defoggerMode);
 
         add(window);
     }
 
     public void createScreen(Phone phone) {
-        window = new JPanel(new GridLayout(1, 2, 10, 10));
+        window = new JPanel(new GridLayout(4, 2, 0, 10));
 
-        JLabel radio = new JLabel("Radio");
-        JLabel radioStatus = new JLabel(phone.getRadioStatus());
+        JLabel radioModeLabel = new JLabel("Radio");
+        JLabel radioMode = new JLabel(phone.getRadioMode());
 
-        window.add(radio);
-        window.add(radioStatus);
+        JLabel radioStationLabel = new JLabel("Radio");
+        JLabel radioStation = new JLabel(phone.getRadioStation());
+
+        JLabel heatLevelLabel = new JLabel("Heat Level: ");
+        JSlider heatLevel = new JSlider(JSlider.HORIZONTAL, 0, 5, phone.getHeatLevel());
+        heatLevel.setMinorTickSpacing(1);
+        heatLevel.setPaintTicks(true);
+        heatLevel.setSnapToTicks(true);
+
+        Hashtable labelTable = new Hashtable();
+        labelTable.put(new Integer(0), new JLabel("0"));
+        labelTable.put(new Integer(1), new JLabel("1"));
+        labelTable.put(new Integer(2), new JLabel("2"));
+        labelTable.put(new Integer(3), new JLabel("3"));
+        labelTable.put(new Integer(4), new JLabel("4"));
+        labelTable.put(new Integer(5), new JLabel("5"));
+        heatLevel.setLabelTable(labelTable);
+        heatLevel.setPaintLabels(true);
+
+        JLabel defoggerModeLabel = new JLabel("Defogger: ");
+        JLabel defoggerMode = new JLabel(phone.getDefoggerMode());
+
+        window.add(radioModeLabel);
+        window.add(radioMode);
+
+        window.add(radioStationLabel);
+        window.add(radioStation);
+
+        window.add(heatLevelLabel);
+        window.add(heatLevel);
+
+        window.add(defoggerModeLabel);
+        window.add(defoggerMode);
 
         add(window);
     }

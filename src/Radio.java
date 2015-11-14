@@ -65,7 +65,7 @@ public class Radio
 	/// Sets the Car's Radio Frequency to setfrequency value. Note: The value of the setfrequency must be a double and has to be between 88 and 108
 	public void setCurrent_radio_frequency(double setfrequency)
 	{
-		if (setfrequency < 88 || setfrequency > 108) // Out of range Frequency
+		if (setfrequency < 0 || setfrequency > 108) // Out of range Frequency
 		{
 			System.out.println("The given set frequency is not valid");
 			System.out.println("Please enter a FM frequency between 88 MHz to 108 MHz");
