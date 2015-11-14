@@ -13,10 +13,10 @@ public class Radio
 
 	/// Radio can be ON or OFF.
 	protected enum Mode {
-		/// Radio is ON
+		/// Radio is Powered ON and its operational
 		ON,
 		
-		/// Radio is OFF
+		/// Radio is Powered OFF and its non operational
 		OFF
 	}
 
@@ -25,13 +25,12 @@ public class Radio
 	{
 		System.out.println("Radio System Initialized");
 		setCurrent_radio_mode(Mode.OFF); // Initialize the Car's Radio
-		current_radio_frequency = 99.9; // Default frequency
+		this.current_radio_frequency = 99.9; // Default frequency
 	}
 
 	/// Returns ON/OFF by examining the status of the Car's Radio
-	public Mode getCurrent_radio_mode() {
-		return current_radio_mode;
-	}
+	public String getCurrent_radio_mode() {	return (current_radio_mode == Mode.ON) ? "ON" : "OFF"; }
+
 
 	/// Sets the Car's Radio Mode to be ON or OFF, as specified by the final_mode value
 	private void setCurrent_radio_mode(Mode final_mode) {
@@ -41,6 +40,8 @@ public class Radio
 	/// This function turns ON the Radio in the car
 	public void TurnON()
 	{
+		setCurrent_radio_mode(Mode.ON);
+		System.out.println("Your Car Radio is " + getCurrent_radio_mode());
 		setCurrent_radio_mode(Mode.ON); // Turn ON the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
@@ -48,6 +49,8 @@ public class Radio
 	/// This function turns OFF the Radio in the car
 	public void TurnOFF()
 	{
+		setCurrent_radio_mode(Mode.OFF);
+		System.out.println("Your Car Radio is " + getCurrent_radio_mode());
 		setCurrent_radio_mode(Mode.OFF); // Turn OFF the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
@@ -69,7 +72,7 @@ public class Radio
 		}
 		else // Frequency is in the range, so the system should change it
 		{
-			if (getCurrent_radio_mode() == Mode.ON) // Radio is ON
+			if (getCurrent_radio_mode() == "ON") // Radio is ON
 			{
 				this.current_radio_frequency = setfrequency;	
 			}
