@@ -1,17 +1,14 @@
 
 public class FuelMonitor {
 	private int currentFuel;
-	private Type type;
 	private Status status;
 	private boolean needFuel;
 	
 	public enum Status{FULL,NEARLY_FULL, HALF, NEARLY_EMPTY, CRITICAL, EMPTY}
-	public enum Type {GAS, ELECTRIC}
 	
 	//Constructor 
-	public FuelMonitor(int currentFuel, Type type){
+	public FuelMonitor(int currentFuel){
 		this.currentFuel = currentFuel;
-		this.type = type;
 		updateStatus();
 		checkFuel();
 	}

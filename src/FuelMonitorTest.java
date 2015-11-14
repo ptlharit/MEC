@@ -7,11 +7,15 @@ import org.junit.Test;
 
 public class FuelMonitorTest {
 	private static FuelMonitor fuelMonitor;
+	private static GasFuelMonitor gFM;
+	private static ElectricFuelMonitor eFM;
 	private static String msg1,msg2,msg3;
 	
 	@BeforeClass
 	public static void setup(){
-		fuelMonitor = new FuelMonitor(96, FuelMonitor.Type.ELECTRIC);
+		fuelMonitor = new FuelMonitor(96);
+		eFM = new ElectricFuelMonitor(79);
+		gFM = new GasFuelMonitor(67);
 		msg1 = "Fuel is low, consider refilling";
 		msg2 = "Fuel extremely low, refill immediately"; 
 		msg3 = "Empty";
