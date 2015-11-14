@@ -4,21 +4,27 @@
  * Purpose: This is a Radio class for the system design.
  */
 
+/// This module allows the user to Turn a Car's Radio or Audio System ON/OFF, and change the Radio Frequency
 public class Radio 
 {
-	private Mode current_radio_mode; // Private for information protection
-	private double current_radio_frequency; // Private
+	// Global variables are PRIVATE for Information Protection and to increase program integrity
+	private Mode current_radio_mode;
+	private double current_radio_frequency;
 
 	/// Radio can be ON or OFF.
-	private enum Mode {
-		ON, OFF
+	protected enum Mode {
+		/// Radio is ON
+		ON,
+		
+		/// Radio is OFF
+		OFF
 	}
 
 	/// Public Constructor. Initializes the Radio of the Car and all the variables. Note: Default Car Radio Mode is ON and the Default Radio Frequency is 99.9 FM.
 	public Radio()
 	{
 		System.out.println("Radio System Initialized");
-		setCurrent_radio_mode(Mode.OFF);
+		setCurrent_radio_mode(Mode.OFF); // Initialize the Car's Radio
 		current_radio_frequency = 99.9; // Default frequency
 	}
 
@@ -35,14 +41,14 @@ public class Radio
 	/// This function turns ON the Radio in the car
 	public void TurnON()
 	{
-		setCurrent_radio_mode(Mode.ON);
+		setCurrent_radio_mode(Mode.ON); // Turn ON the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
 
 	/// This function turns OFF the Radio in the car
 	public void TurnOFF()
 	{
-		setCurrent_radio_mode(Mode.OFF);
+		setCurrent_radio_mode(Mode.OFF); // Turn OFF the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
 
@@ -61,7 +67,7 @@ public class Radio
 			System.out.println("The given set frequency is not valid");
 			System.out.println("Please enter a FM frequency between 88 MHz to 108 MHz");
 		}
-		else // Frequency is in the range
+		else // Frequency is in the range, so the system should change it
 		{
 			if (getCurrent_radio_mode() == Mode.ON) // Radio is ON
 			{
