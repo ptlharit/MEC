@@ -13,10 +13,10 @@ public class Radio
 
 	/// Radio can be ON or OFF.
 	protected enum Mode {
-		/// Radio is ON
+		/// Radio is Powered ON and its operational
 		ON,
 		
-		/// Radio is OFF
+		/// Radio is Powered OFF and its non operational
 		OFF
 	}
 
@@ -25,12 +25,12 @@ public class Radio
 	{
 		System.out.println("Radio System Initialized");
 		setCurrent_radio_mode(Mode.OFF); // Initialize the Car's Radio
-		current_radio_frequency = 99.9; // Default frequency
+		this.current_radio_frequency = 99.9; // Default frequency
 	}
 
 	/// Returns ON/OFF by examining the status of the Car's Radio
 	public Mode getCurrent_radio_mode() {
-		return current_radio_mode;
+		return this.current_radio_mode;
 	}
 
 	/// Sets the Car's Radio Mode to be ON or OFF, as specified by the final_mode value

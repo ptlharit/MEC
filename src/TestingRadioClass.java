@@ -1,7 +1,7 @@
 /*
  * Name: Nisarg Patel
  * McMaster Engineering Competition 2015
- * Purpose: This is module which performs automate tests to the Radio Class and ensures correct behaviour
+ * Purpose: This module performs automated tests to the Radio Class and ensures correct behaviour
  */
 
 import static org.junit.Assert.*;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class TestingRadioClass {
 
-	/// This method tests the Radio Constructor
+	/// This method tests the Radio Class Constructor
 	@Test
 	public void testRadio() {
 		Radio car_radio_test = new Radio();
