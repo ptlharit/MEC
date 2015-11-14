@@ -11,6 +11,7 @@ public class Car extends JFrame {
 
         createScreen();
 
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
