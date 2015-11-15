@@ -1,5 +1,5 @@
 
-public class CarGPS {
+class CarGPS {
 	private double lon;
 	private double lat;
 		
