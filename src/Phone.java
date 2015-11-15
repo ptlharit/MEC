@@ -210,7 +210,7 @@ public class Phone extends JFrame {
 
         JLabel radioStationLabel = new JLabel("STATION: ");
 
-        spinner = new JSpinner(new SpinnerNumberModel(1.50, 0.00, 9.99, 0.05));
+        spinner = new JSpinner(new SpinnerNumberModel(87.4, 0.00, 88.0, 0.1));
         radio.setCurrent_radio_frequency(1.50);
         JSpinner.NumberEditor editor = (JSpinner.NumberEditor)spinner.getEditor();
         DecimalFormat format = editor.getFormat();
