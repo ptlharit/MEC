@@ -161,7 +161,7 @@ public class Phone extends JFrame {
     public String getRadioStation() { return String.valueOf(radio.getCurrent_radio_frequency()); }
     public int getHeatLevel() { return heater.getHeatingLevel(); }
     public String getLon() throws IOException, JSONException { return String.valueOf(navigation.lon()); }
-    public String getLat() throws IOException, JSONException { return String.valueOf(navigation.lon()); }
+    public String getLat() throws IOException, JSONException { return String.valueOf(navigation.lat()); }
     public String getDefoggerMode() { return defogger.getCurrent_defogger_mode(); }
 
     public void reset() {
