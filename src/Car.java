@@ -23,9 +23,6 @@ public class Car extends JFrame {
         JLabel radioModeLabel = new JLabel("Radio: ");
         JLabel radioMode = new JLabel("OFF");
 
-        JLabel radioStationLabel = new JLabel("Radio Station: ");
-        JLabel radioStation = new JLabel("1.50");
-
         JLabel heatLevelLabel = new JLabel("Heat Level: ");
         JSlider heatLevel = new JSlider(JSlider.HORIZONTAL, 0, 5, 0);
         heatLevel.setMinorTickSpacing(1);
@@ -42,17 +39,20 @@ public class Car extends JFrame {
         heatLevel.setLabelTable(labelTable);
         heatLevel.setPaintLabels(true);
 
+        JLabel navigationCoordsLabel = new JLabel("Destination Coordinates: ");
+        JLabel navigationCoords = new JLabel("( ,  )");
+
         JLabel defoggerModeLabel = new JLabel("Defogger: ");
         JLabel defoggerMode = new JLabel("OFF");
 
         window.add(radioModeLabel);
         window.add(radioMode);
 
-        window.add(radioStationLabel);
-        window.add(radioStation);
-
         window.add(heatLevelLabel);
         window.add(heatLevel);
+
+        window.add(navigationCoordsLabel);
+        window.add(navigationCoords);
 
         window.add(defoggerModeLabel);
         window.add(defoggerMode);
@@ -63,11 +63,8 @@ public class Car extends JFrame {
     public void createScreen(Phone phone) {
         window = new JPanel(new GridLayout(4, 2, 0, 10));
 
-        JLabel radioModeLabel = new JLabel("Radio");
-        JLabel radioMode = new JLabel(phone.getRadioMode());
-
-        JLabel radioStationLabel = new JLabel("Radio");
-        JLabel radioStation = new JLabel(phone.getRadioStation());
+        JLabel radioLabel = new JLabel("Radio");
+        JLabel radio = new JLabel((phone.getRadioMode() == "ON") ? phone.getRadioMode() + " : " + phone.getRadioStation() : "OFF");
 
         JLabel heatLevelLabel = new JLabel("Heat Level: ");
         JSlider heatLevel = new JSlider(JSlider.HORIZONTAL, 0, 5, phone.getHeatLevel());
@@ -85,17 +82,20 @@ public class Car extends JFrame {
         heatLevel.setLabelTable(labelTable);
         heatLevel.setPaintLabels(true);
 
+        JLabel navigationCoordsLabel = new JLabel("Destination Coordinates: ");
+        JLabel navigationCoords = new JLabel("( " + phone.getLon() + ", " + phone.getLat() + " )");
+
         JLabel defoggerModeLabel = new JLabel("Defogger: ");
         JLabel defoggerMode = new JLabel(phone.getDefoggerMode());
 
-        window.add(radioModeLabel);
-        window.add(radioMode);
-
-        window.add(radioStationLabel);
-        window.add(radioStation);
+        window.add(radioLabel);
+        window.add(radio);
 
         window.add(heatLevelLabel);
         window.add(heatLevel);
+
+        window.add(navigationCoordsLabel);
+        window.add(navigationCoords);
 
         window.add(defoggerModeLabel);
         window.add(defoggerMode);
@@ -105,6 +105,13 @@ public class Car extends JFrame {
 
     public void update(Phone phone) {
         window.removeAll();
+        createScreen(phone);
+        window.updateUI();
+    }
+
+    public void reset(Phone phone) {
+        window.removeAll();
+        phone.reset();
         createScreen(phone);
         window.updateUI();
     }

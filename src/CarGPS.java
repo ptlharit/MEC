@@ -5,9 +5,9 @@ public class CarGPS {
 		
 	public CarGPS() {}
 	
-	public void setLoc(String[] loc){
-		this.lon = Double.parseDouble(loc[0]);
-		this.lat = Double.parseDouble(loc[1]);
+	public void setLoc(String lo, String la){
+		this.lon = Double.parseDouble(lo);
+		this.lat = Double.parseDouble(la);
 	}
 		
 	@Override
