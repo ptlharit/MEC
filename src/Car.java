@@ -44,7 +44,7 @@ public class Car extends JFrame {
         heatLevel.setPaintLabels(true);
 
         JLabel navigationCoordsLabel = new JLabel("Destination Coordinates: ");
-        JLabel navigationCoords = new JLabel("( ,  )");
+        JLabel navigationCoords = new JLabel("( 0.0, 0.0 )");
 
         JLabel defoggerModeLabel = new JLabel("Defogger: ");
         JLabel defoggerMode = new JLabel("OFF");
