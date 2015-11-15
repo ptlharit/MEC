@@ -44,13 +44,6 @@ public class Location {
 	public List<Place> getRepairLocations(String make){
 		GooglePlaces client = new GooglePlaces("AIzaSyCCUcdjaHg0yPR9HDU1m5sNvtjxYoROFhg");
 		List<Place> places = client.getPlacesByQuery(make, GooglePlaces.MAXIMUM_RESULTS, Param.name("radius").value(2000), Param.name("location").value("43.2617486,-79.9227811"));
-	
 		return places;
 	}
-	
-//	public static void main(String args[]) throws JSONException, IOException{
-//		String[] temp = Location.getGeoLocation("McMaster University");
-//		System.out.println(temp[0] + ", " + temp[1]);
-//	}
-
 }

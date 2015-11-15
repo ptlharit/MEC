@@ -1,5 +1,9 @@
 import javax.swing.*;
+
+import org.json.JSONException;
+
 import java.awt.*;
+import java.io.IOException;
 import java.util.Hashtable;
 
 public class Car extends JFrame {
@@ -60,7 +64,7 @@ public class Car extends JFrame {
         add(window);
     }
 
-    public void createScreen(Phone phone) {
+    public void createScreen(Phone phone) throws IOException, JSONException {
         window = new JPanel(new GridLayout(4, 2, 0, 10));
 
         JLabel radioLabel = new JLabel("Radio");
@@ -105,14 +109,14 @@ public class Car extends JFrame {
 
     public void update(Phone phone) {
         window.removeAll();
-        createScreen(phone);
+        try { createScreen(phone); } catch (IOException | JSONException e) { }
         window.updateUI();
     }
 
     public void reset(Phone phone) {
         window.removeAll();
         phone.reset();
-        createScreen(phone);
+        try { createScreen(phone); } catch (IOException | JSONException e) { }
         window.updateUI();
     }
 }

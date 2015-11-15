@@ -1,7 +1,11 @@
 import javax.swing.*;
+
+import org.json.JSONException;
+
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class Phone extends JFrame {
@@ -9,6 +13,7 @@ public class Phone extends JFrame {
     private Car car;
     private Radio radio;
     private Heating heater;
+    private Location location;
     private CarGPS navigation;
     private Defogger defogger;
 
@@ -24,10 +29,8 @@ public class Phone extends JFrame {
     private JLabel heatLevelLabel;
     private JButton incHEAT;
 
-    private JLabel lonLabel;
-    private JLabel latLabel;
-    private JTextField lon;
-    private JTextField lat;
+    private JLabel addressLabel;
+    private JTextField address;
     private JButton setAsDest;
 
     private JRadioButton dON;
@@ -110,15 +113,18 @@ public class Phone extends JFrame {
 
         // NAVIGATION SCREEN
         navigation = new CarGPS();
-        lonLabel = new JLabel("Longitude: ");
-        latLabel = new JLabel("Latitude: ");
-
-        lon = new JTextField();
-        lat = new JTextField();
+        location = new Location();
+        
+        addressLabel = new JLabel("Address: ");
+        address = new JTextField();
         setAsDest = new JButton("Set As Destination");
 
         setAsDest.addActionListener(e -> {
-            navigation.setLoc(lon.getText(), lat.getText());
+        	String[] coords = {"", ""};
+			try {
+				coords = location.getGeoLocation(address.getText());
+			} catch (Exception e1) {}
+            navigation.setLoc(coords[0], coords[1]);
             car.update(this);
         });
 
@@ -151,14 +157,15 @@ public class Phone extends JFrame {
     public String getRadioMode() { return radio.getCurrent_radio_mode(); }
     public String getRadioStation() { return String.valueOf(radio.getCurrent_radio_frequency()); }
     public int getHeatLevel() { return heater.getHeatingLevel(); }
-    public String getLon() { return String.valueOf(lon.getText()); }
-    public String getLat() { return String.valueOf(lat.getText()); }
+    public String getLon() throws IOException, JSONException { return String.valueOf(navigation.lon()); }
+    public String getLat() throws IOException, JSONException { return String.valueOf(navigation.lon()); }
     public String getDefoggerMode() { return defogger.getCurrent_defogger_mode(); }
 
     public void reset() {
         radio.TurnOFF();
         heater.setHeat(0);
-        navigation.setLoc("0", "0"); lon.setText("0"); lat.setText("0");
+        navigation.setLoc("0", "0");
+        address.setText("");
         defogger.TurnOFF();
     }
 
@@ -253,15 +260,10 @@ public class Phone extends JFrame {
     
     private void navigationSettings() {
         window.removeAll();
-        window = new JPanel(new GridLayout(4, 2, 10, 10));
+        window = new JPanel(new GridLayout(3, 2, 10, 10));
 
-        lon.setText(lon.getText());
-        lat.setText(lat.getText());
-        
-        window.add(lonLabel);
-        window.add(lon);
-        window.add(latLabel);
-        window.add(lat);
+        window.add(addressLabel);
+        window.add(address);
         window.add(setAsDest);
         setAsDest.setAlignmentX(Component.CENTER_ALIGNMENT);
         window.add(emptyLabel);
