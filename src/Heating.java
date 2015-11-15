@@ -1,9 +1,9 @@
-
+/// This module allows the user to change the Heating of the Car
 class Heating {
 	private Mode status;
 	private int heatingLevel;
 	
-	///Enum to keep track of Heating status.
+	/// Car Heater can be ON/OFF
 	public enum Mode{
 		ON,OFF;
 	}
@@ -24,6 +24,7 @@ class Heating {
 		System.out.println("status is: "+status+", heating level is: "+this.heatingLevel);
 	}	
 
+	///This method increases the Heat inside a car to a Max Setting of 5
 	public void increaseHeat(){
 		if(this.heatingLevel == 0 && this.status == Mode.OFF){
 			this.heatingLevel++;
@@ -36,6 +37,7 @@ class Heating {
 		}
 	}
 	
+	///This method decreases the Heat inside a car to a Min Setting of 0 and turning Off the heater
 	public void decreaseHeat(){
 		if(this.heatingLevel == 1 && this.status == Mode.ON){
 			this.heatingLevel--;
@@ -48,6 +50,7 @@ class Heating {
 		}		
 	}
 
+	///This method allows the user to Set the Heater to a specific level
 	public void setHeat(int level){
 		if(level == 0){
 			this.heatingLevel = level;
@@ -58,6 +61,5 @@ class Heating {
 		} else {
 			System.out.println("input a level between 0 and 5");
 		}		
-	}
-	
+	}	
 }

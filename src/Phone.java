@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import se.walkercrou.places.Place;
 
+/// Phone User Interface
 public class Phone extends JFrame {
 
     private Car car;

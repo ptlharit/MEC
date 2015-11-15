@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Hashtable;
 
+/// Car User Interface
 public class Car extends JFrame {
 
     private JPanel window;

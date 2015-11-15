@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/// This module tests the FuelMonitor class
 public class FuelMonitorTest {
 	private static FuelMonitor fuelMonitor;
 	private static GasFuelMonitor gFM;
@@ -21,6 +22,7 @@ public class FuelMonitorTest {
 		msg3 = "Empty";
 	}
 	
+	/// Test Fuel Status
 	@Test
 	public void testFuelStatus() {
 		fuelMonitor.updateFuel(50);
@@ -37,6 +39,7 @@ public class FuelMonitorTest {
 		assertEquals(FuelMonitor.Status.NEARLY_EMPTY, fuelMonitor.getStatus());
 	}
 	
+	/// Test Fuel Amount
 	@Test
 	public void testFuelAmount(){
 		fuelMonitor.updateFuel(50);
@@ -53,24 +56,28 @@ public class FuelMonitorTest {
 		assertEquals(10, fuelMonitor.getCurrentFuel());
 	}
 	
+	/// Test Alert Message for Nearly Empty Condition
 	@Test
 	public void testAlertMsgNearlyEmpty(){
 		fuelMonitor.updateFuel(15);
 		assertEquals(msg1, fuelMonitor.alert(fuelMonitor.getStatus()));
 	}
 	
+	/// Test Alert Message for Critical Condition
 	@Test
 	public void testAlertMsgCritical(){
 		fuelMonitor.updateFuel(5);
 		assertEquals(msg2, fuelMonitor.alert(fuelMonitor.getStatus()));
 	}
 	
+	/// Test Alert Message for Tank/Charge Empty Condition
 	@Test
 	public void testAlertMsgEmpty(){
 		fuelMonitor.updateFuel(0);
 		assertEquals(msg3, fuelMonitor.alert(fuelMonitor.getStatus()));
 	}
 	
+	/// Test Alert Message for NO Message Condition
 	@Test
 	public void testNoAlertMsg(){
 		fuelMonitor.updateFuel(75);

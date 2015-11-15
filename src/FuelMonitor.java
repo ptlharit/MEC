@@ -1,4 +1,4 @@
-
+/// This module monitors the Fuel Level in the Car. Note: it could be Fuel Level for Gas Cars and Charge Level for Electric Cars
 class FuelMonitor {
 	private int currentFuel;
 	private Status status;
@@ -52,6 +52,7 @@ class FuelMonitor {
 		 if (needFuel) alert(status); //alert method place holder
 	}
 	
+	///This method sets the alert status for the user to know
 	public String alert(Status status){
 		String msg = "";
 		switch (status){
@@ -62,6 +63,4 @@ class FuelMonitor {
 		}
 		return msg;
 	}
-	
-	
 }

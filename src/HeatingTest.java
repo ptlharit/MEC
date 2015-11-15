@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/// This module tests the Heating Class using automated tests
 public class HeatingTest {
 	private static Heating heater;
 
@@ -10,6 +11,7 @@ public class HeatingTest {
 		heater = new Heating();
 	}
 
+	/// Test increaseHeat() method in the Heating Class
 	@Test
 	public void increaseHeatTest() {
 		assertEquals(heater.getStatus(), Heating.Mode.OFF);
@@ -25,6 +27,7 @@ public class HeatingTest {
 		assertEquals(heater.getHeatingLevel(), 5);
 	}
 	
+	/// Test decreaseHeat() method in the Heating Class
 	@Test
 	public void decreaseHeatTest() {
 		for(int i=0; i<5; i++)
@@ -41,6 +44,7 @@ public class HeatingTest {
 		assertEquals(heater.getHeatingLevel(), 0);
 	}
 	
+	/// Test setHeat() method in the Heating Class
 	@Test
 	public void setHeatTest() {
 		heater.setHeat(0);
@@ -52,5 +56,4 @@ public class HeatingTest {
 		assertEquals(heater.getStatus(), Heating.Mode.OFF);
 		assertEquals(heater.getHeatingLevel(), 0);
 	}
-
 }

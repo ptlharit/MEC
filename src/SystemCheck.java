@@ -74,5 +74,6 @@ class SystemCheck {
 		}
 	}
 	
+	/// Returns the number of Kilometres left for the next oil change
 	public double getKMToNextOilChange() { return 5000-this.kilometres_after_last_oil_change; }
 }

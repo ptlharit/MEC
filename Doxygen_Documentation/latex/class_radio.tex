@@ -1,0 +1,107 @@
+\hypertarget{class_radio}{}\section{Radio Class Reference}
+\label{class_radio}\index{Radio@{Radio}}
+
+
+This module allows the user to Turn a Car\textquotesingle{}s \hyperlink{class_radio}{Radio} or Audio System O\+N/\+O\+F\+F, and change the \hyperlink{class_radio}{Radio} Frequency.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{enum_radio_1_1_mode}{Mode}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_radio}{Radio} can be O\+N or O\+F\+F. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_radio_aa5f5b6b5d34981b50128757a27d9ee0c}{Radio} ()
+\begin{DoxyCompactList}\small\item\em Public Constructor. Initializes the \hyperlink{class_radio}{Radio} of the Car and all the variables. Note\+: Default Car \hyperlink{class_radio}{Radio} \hyperlink{enum_radio_1_1_mode}{Mode} is O\+N and the Default \hyperlink{class_radio}{Radio} Frequency is 99.\+9 F\+M. \end{DoxyCompactList}\item 
+\hyperlink{enum_radio_1_1_mode}{Mode} \hyperlink{class_radio_aa1e69a2dd5cb50a8401ae4a0e4908029}{get\+Current\+\_\+radio\+\_\+mode} ()
+\begin{DoxyCompactList}\small\item\em Returns O\+N/\+O\+F\+F by examining the status of the Car\textquotesingle{}s \hyperlink{class_radio}{Radio}. \end{DoxyCompactList}\item 
+void \hyperlink{class_radio_a356f66f2b96663f03a99463703de77de}{Turn\+O\+N} ()
+\begin{DoxyCompactList}\small\item\em This function turns O\+N the \hyperlink{class_radio}{Radio} in the car. \end{DoxyCompactList}\item 
+void \hyperlink{class_radio_adf335ca72244b255cc5780e6f11304dd}{Turn\+O\+F\+F} ()
+\begin{DoxyCompactList}\small\item\em This function turns O\+F\+F the \hyperlink{class_radio}{Radio} in the car. \end{DoxyCompactList}\item 
+double \hyperlink{class_radio_a9484c6f8d4037a54c99dfeaf15a69a9f}{get\+Current\+\_\+radio\+\_\+frequency} ()
+\begin{DoxyCompactList}\small\item\em Returns the Car\textquotesingle{}s Current \hyperlink{class_radio}{Radio} Frequency. \end{DoxyCompactList}\item 
+void \hyperlink{class_radio_a3308d52d31a7f3eddfb60cb51ff75cd1}{set\+Current\+\_\+radio\+\_\+frequency} (double setfrequency)
+\begin{DoxyCompactList}\small\item\em Sets the Car\textquotesingle{}s \hyperlink{class_radio}{Radio} Frequency to setfrequency value. Note\+: The value of the setfrequency must be a double and has to be between 88 and 108. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module allows the user to Turn a Car\textquotesingle{}s \hyperlink{class_radio}{Radio} or Audio System O\+N/\+O\+F\+F, and change the \hyperlink{class_radio}{Radio} Frequency. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_radio_aa5f5b6b5d34981b50128757a27d9ee0c}{}\index{Radio@{Radio}!Radio@{Radio}}
+\index{Radio@{Radio}!Radio@{Radio}}
+\subsubsection[{Radio()}]{\setlength{\rightskip}{0pt plus 5cm}Radio.\+Radio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_aa5f5b6b5d34981b50128757a27d9ee0c}
+
+
+Public Constructor. Initializes the \hyperlink{class_radio}{Radio} of the Car and all the variables. Note\+: Default Car \hyperlink{class_radio}{Radio} \hyperlink{enum_radio_1_1_mode}{Mode} is O\+N and the Default \hyperlink{class_radio}{Radio} Frequency is 99.\+9 F\+M. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_radio_a9484c6f8d4037a54c99dfeaf15a69a9f}{}\index{Radio@{Radio}!get\+Current\+\_\+radio\+\_\+frequency@{get\+Current\+\_\+radio\+\_\+frequency}}
+\index{get\+Current\+\_\+radio\+\_\+frequency@{get\+Current\+\_\+radio\+\_\+frequency}!Radio@{Radio}}
+\subsubsection[{get\+Current\+\_\+radio\+\_\+frequency()}]{\setlength{\rightskip}{0pt plus 5cm}double Radio.\+get\+Current\+\_\+radio\+\_\+frequency (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_a9484c6f8d4037a54c99dfeaf15a69a9f}
+
+
+Returns the Car\textquotesingle{}s Current \hyperlink{class_radio}{Radio} Frequency. 
+
+\hypertarget{class_radio_aa1e69a2dd5cb50a8401ae4a0e4908029}{}\index{Radio@{Radio}!get\+Current\+\_\+radio\+\_\+mode@{get\+Current\+\_\+radio\+\_\+mode}}
+\index{get\+Current\+\_\+radio\+\_\+mode@{get\+Current\+\_\+radio\+\_\+mode}!Radio@{Radio}}
+\subsubsection[{get\+Current\+\_\+radio\+\_\+mode()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mode} Radio.\+get\+Current\+\_\+radio\+\_\+mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_aa1e69a2dd5cb50a8401ae4a0e4908029}
+
+
+Returns O\+N/\+O\+F\+F by examining the status of the Car\textquotesingle{}s \hyperlink{class_radio}{Radio}. 
+
+\hypertarget{class_radio_a3308d52d31a7f3eddfb60cb51ff75cd1}{}\index{Radio@{Radio}!set\+Current\+\_\+radio\+\_\+frequency@{set\+Current\+\_\+radio\+\_\+frequency}}
+\index{set\+Current\+\_\+radio\+\_\+frequency@{set\+Current\+\_\+radio\+\_\+frequency}!Radio@{Radio}}
+\subsubsection[{set\+Current\+\_\+radio\+\_\+frequency(double setfrequency)}]{\setlength{\rightskip}{0pt plus 5cm}void Radio.\+set\+Current\+\_\+radio\+\_\+frequency (
+\begin{DoxyParamCaption}
+\item[{double}]{setfrequency}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_a3308d52d31a7f3eddfb60cb51ff75cd1}
+
+
+Sets the Car\textquotesingle{}s \hyperlink{class_radio}{Radio} Frequency to setfrequency value. Note\+: The value of the setfrequency must be a double and has to be between 88 and 108. 
+
+\hypertarget{class_radio_adf335ca72244b255cc5780e6f11304dd}{}\index{Radio@{Radio}!Turn\+O\+F\+F@{Turn\+O\+F\+F}}
+\index{Turn\+O\+F\+F@{Turn\+O\+F\+F}!Radio@{Radio}}
+\subsubsection[{Turn\+O\+F\+F()}]{\setlength{\rightskip}{0pt plus 5cm}void Radio.\+Turn\+O\+F\+F (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_adf335ca72244b255cc5780e6f11304dd}
+
+
+This function turns O\+F\+F the \hyperlink{class_radio}{Radio} in the car. 
+
+\hypertarget{class_radio_a356f66f2b96663f03a99463703de77de}{}\index{Radio@{Radio}!Turn\+O\+N@{Turn\+O\+N}}
+\index{Turn\+O\+N@{Turn\+O\+N}!Radio@{Radio}}
+\subsubsection[{Turn\+O\+N()}]{\setlength{\rightskip}{0pt plus 5cm}void Radio.\+Turn\+O\+N (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_radio_a356f66f2b96663f03a99463703de77de}
+
+
+This function turns O\+N the \hyperlink{class_radio}{Radio} in the car. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Program Files/eclipse/workspace/\+M\+E\+C\+\_\+2015/src/\hyperlink{_radio_8java}{Radio.\+java}\end{DoxyCompactItemize}
