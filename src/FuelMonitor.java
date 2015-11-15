@@ -1,5 +1,5 @@
 
-public class FuelMonitor {
+class FuelMonitor {
 	private int currentFuel;
 	private Status status;
 	private boolean needFuel;
