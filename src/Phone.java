@@ -11,6 +11,8 @@ import se.walkercrou.places.Place;
 public class Phone extends JFrame {
 
     private Car car;
+    private String make;
+    
     private Radio radio;
     private Heating heater;
     private Location location;
@@ -51,8 +53,9 @@ public class Phone extends JFrame {
 
     private JButton backButton;
 
-    public Phone(Car car) {
+    public Phone(Car car, String make) {
         this.car = car;
+        this.make = make;
 
         setTitle("McMaster Engineering Competition | 2015 | Programming | Phone");
         setSize(600, 800);
@@ -142,7 +145,7 @@ public class Phone extends JFrame {
         
         // SYSTEM CHECK SCREEN
         double[] tires = {32.0, 29.0, 10.0, 57.7};
-        systemCheck = new SystemCheck("MEC Car", tires, 1000);
+        systemCheck = new SystemCheck(this.make, tires, 1000);
         
         // FUEL CHECK SCREEN
         fuelCheck = new FuelMonitor(70);
@@ -352,11 +355,13 @@ public class Phone extends JFrame {
     private void fuelCheckSettings() {
         window.removeAll();
         window = new JPanel(new GridLayout(3, 2, 10, 10));
-        
-        JLabel currentFuelLabel = new JLabel("Current Fuel: ");
+        String temp = "";
+        if (this.make == "Honda Accord") {temp = "Current Fuel: "; }
+        else { temp = "Current Charge: "; }
+        JLabel currentFuelLabel = new JLabel(temp);
         JLabel currentFuel = new JLabel(String.valueOf(fuelCheck.getCurrentFuel()) + "%");
         
-        JLabel fuelStatusLabel = new JLabel("Current Fuel: ");
+        JLabel fuelStatusLabel = new JLabel(temp);
         JLabel fuelStatus = new JLabel(String.valueOf(fuelCheck.getStatus()));
 
         window.add(currentFuelLabel);

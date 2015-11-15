@@ -4,10 +4,9 @@ import java.awt.*;
 public class Main {
 
 	public static void main(String[] args) {
-		//userauthentication(); // Perform User Authentication if successful then execute the rest else exit
-		//carmakeinput();
+		userauthentication(); // Perform User Authentication if successful then execute the rest else exit
 		Car car = new Car();
-		Phone phone = new Phone(car);
+		Phone phone = new Phone(car, carmakeinput());
 	}
 
 	/// This function performs the user authentication. It asks the user for password and checks it. If Password tries are >= 3 then the program gets locked
@@ -52,10 +51,11 @@ public class Main {
 	}
 	
 	/// This method lets the user choice a car make. For now: the user can choose from Tesla S or Honda Accord
-	public static void carmakeinput()
+	public static String carmakeinput()
 	{
+		String input = "";
 		try {
-			String input = (String) JOptionPane.showInputDialog(null, "Please choose your Car Make", "Car Make",
+			input = (String) JOptionPane.showInputDialog(null, "Please choose your Car Make", "Car Make",
 					JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Honda Accord",
 			"Tesla S" }, "Honda Accord");
 			if (!input.equals(null))
@@ -63,5 +63,6 @@ public class Main {
 				// Do the mode stuff here
 			}
 		} catch (NullPointerException e) { }
+		return input;
 	}
 }
