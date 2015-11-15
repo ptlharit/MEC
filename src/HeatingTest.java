@@ -4,7 +4,7 @@ import org.junit.Test;
 
 
 
-public class HeatingTest {
+class HeatingTest {
 	private static Heating heater;
 
 	@BeforeClass
