@@ -1,24 +1,34 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Hashtable;
 
 public class Phone extends JFrame {
 
     private Car car;
     private Radio radio;
+    private Heating heater;
+    private Defogger defogger;
 
     private JPanel window = new JPanel();
+    private JLabel emptyLabel = new JLabel("");
 
-    private JRadioButton on;
-    private JRadioButton off;
+    private JRadioButton rON;
+    private JRadioButton rOFF;
     private ButtonGroup radioButtons;
+    private JSpinner spinner;
+
+    private JButton decHEAT;
+    private JLabel heatLevelLabel;
+    private JButton incHEAT;
+
+    private JRadioButton dON;
+    private JRadioButton dOFF;
+    private ButtonGroup defoggerButtons;
 
     private JButton radioButton;
     private JButton heatingButton;
     private JButton navigationButton;
-    private JButton defrostButton;
+    private JButton defogButton;
 
     private JButton backButton;
 
@@ -32,24 +42,59 @@ public class Phone extends JFrame {
         radioButton = new JButton("Radio");
         heatingButton = new JButton("Heating");
         navigationButton = new JButton("Navigation");
-        defrostButton = new JButton("Defrost");
+        defogButton = new JButton("Defogger");
 
         radioButton.addActionListener(e -> { radioSettings(); });
         heatingButton.addActionListener(e -> { heatingSettings(); });
         navigationButton.addActionListener(e -> { navigationSettings(); });
-        defrostButton.addActionListener(e -> { defrostSettings(); });
+        defogButton.addActionListener(e -> { defoggerSettings(); });
 
         // RADIO SCREEN
         radio = new Radio();
-        on = new JRadioButton("ON");
-        off = new JRadioButton("OFF");
+        rON = new JRadioButton("ON");
+        rOFF = new JRadioButton("OFF");
 
-        on.addActionListener(e -> { radio.TurnON(); car.update(this); });
-        off.addActionListener(e -> { radio.TurnOFF(); car.update(this); });
+        rON.addActionListener(e -> { spinner.setEnabled(true); radio.TurnON(); car.update(this); });
+        rOFF.addActionListener(e -> { spinner.setEnabled(false); radio.TurnOFF(); car.update(this); });
 
         radioButtons = new ButtonGroup();
-        radioButtons.add(on);
-        radioButtons.add(off);
+        radioButtons.add(rON);
+        radioButtons.add(rOFF);
+
+        // HEATING SCREEN
+        heater = new Heating();
+        decHEAT = new JButton("-");
+        heatLevelLabel = new JLabel(String.valueOf(heater.getHeatingLevel()));
+        incHEAT = new JButton("+");
+
+        decHEAT.addActionListener(e -> {
+            heater.decreaseHeat();
+            car.update(this);
+            if (heater.getHeatingLevel() == 0) { decHEAT.setEnabled(false); }
+            else decHEAT.setEnabled(true);
+            heatLevelLabel = new JLabel(String.valueOf(heater.getHeatingLevel()));
+            heatingSettings();
+        });
+        incHEAT.addActionListener(e -> {
+            heater.increaseHeat();
+            car.update(this);
+            if (heater.getHeatingLevel() == 5) { incHEAT.setEnabled(false); }
+            else incHEAT.setEnabled(true);
+            heatLevelLabel = new JLabel(String.valueOf(heater.getHeatingLevel()));
+            heatingSettings();
+        });
+
+        // DEFOGGER SCREEN
+        defogger = new Defogger();
+        dON = new JRadioButton("ON");
+        dOFF = new JRadioButton("OFF");
+
+        dON.addActionListener(e -> { defogger.TurnON(); car.update(this); });
+        dOFF.addActionListener(e -> { defogger.TurnOFF(); car.update(this); });
+
+        defoggerButtons = new ButtonGroup();
+        defoggerButtons.add(dON);
+        defoggerButtons.add(dOFF);
 
         home();
 
@@ -58,7 +103,10 @@ public class Phone extends JFrame {
         setVisible(true);
     }
 
-    public String getRadioStatus() { return radio.getCurrent_radio_mode(); }
+    public String getRadioMode() { return radio.getCurrent_radio_mode(); }
+    public String getRadioStation() { return String.valueOf(radio.getCurrent_radio_frequency()); }
+    public int getHeatLevel() { return heater.getHeatingLevel(); }
+    public String getDefoggerMode() { return defogger.getCurrent_defogger_mode(); }
 
     private void home() {
         window.removeAll();
@@ -67,7 +115,7 @@ public class Phone extends JFrame {
         window.add(radioButton);
         window.add(heatingButton);
         window.add(navigationButton);
-        window.add(defrostButton);
+        window.add(defogButton);
 
         add(window);
         window.updateUI();
@@ -79,29 +127,34 @@ public class Phone extends JFrame {
 
         JLabel radioModeLabel = new JLabel("RADIO: ");
 
-        if (on.isSelected()) {
+        if (rON.isSelected()) {
             radio.TurnON();
-            on.setSelected(true);
+            rON.setSelected(true);
         } else {
             radio.TurnOFF();
-            off.setSelected(true);
+            rOFF.setSelected(true);
         }
 
         JLabel radioStationLabel = new JLabel("STATION: ");
-        JLabel emptyLabel = new JLabel("");
 
-
-        JSpinner spinner = new JSpinner(new SpinnerNumberModel(1.50, 0.00, 9.99, 0.05));
+        spinner = new JSpinner(new SpinnerNumberModel(1.50, 0.00, 9.99, 0.05));
+        radio.setCurrent_radio_frequency(1.50);
         JSpinner.NumberEditor editor = (JSpinner.NumberEditor)spinner.getEditor();
         DecimalFormat format = editor.getFormat();
         format.setMinimumFractionDigits(3);
         editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 
-        spinner.addChangeListener(e -> { car.update(this); });
+        if (rOFF.isSelected()) { spinner.setEnabled(false); }
+        if (rON.isSelected()) { spinner.setEnabled(true); }
+
+        spinner.addChangeListener(e -> {
+            radio.setCurrent_radio_frequency((double) spinner.getValue());
+            car.update(this);
+        });
 
         window.add(radioModeLabel);
-        window.add(on);
-        window.add(off);
+        window.add(rON);
+        window.add(rOFF);
 
         window.add(radioStationLabel);
         window.add(spinner);
@@ -115,29 +168,20 @@ public class Phone extends JFrame {
     
     private void heatingSettings() {
         window.removeAll();
-        window = new JPanel(new GridLayout(4, 1, 10, 10));
+        window = new JPanel(new GridLayout(2, 3, 10, 10));
 
-        JSlider level = new JSlider(JSlider.VERTICAL, 0, 5, 0);
-        level.setMinorTickSpacing(1);
-        level.setPaintTicks(true);
-        level.setSnapToTicks(true);
+        if (heater.getHeatingLevel() == 0) { decHEAT.setEnabled(false); }
+        else if (heater.getHeatingLevel() == 5) { incHEAT.setEnabled(false); }
+        else { decHEAT.setEnabled(true); incHEAT.setEnabled(true); }
 
-        Hashtable labelTable = new Hashtable();
-        labelTable.put(new Integer(0), new JLabel("0"));
-        labelTable.put(new Integer(1), new JLabel("1"));
-        labelTable.put(new Integer(2), new JLabel("2"));
-        labelTable.put(new Integer(3), new JLabel("3"));
-        labelTable.put(new Integer(4), new JLabel("4"));
-        labelTable.put(new Integer(5), new JLabel("5"));
-        level.setLabelTable(labelTable);
+        window.add(decHEAT);
+        window.add(heatLevelLabel);
+        window.add(incHEAT);
 
-        level.setPaintLabels(true);
-        window.add(level);
-
-        window.add(new JLabel("1"));
-        window.add(new JLabel("2"));
-        window.add(new JLabel("3"));
         createBackButton();
+        window.add(emptyLabel);
+        window.add(emptyLabel);
+
         add(window);
         window.updateUI();
     }
@@ -153,13 +197,28 @@ public class Phone extends JFrame {
         window.updateUI();
     }
     
-    private void defrostSettings() {
+    private void defoggerSettings() {
         window.removeAll();
-        window = new JPanel(new GridLayout(4, 1, 10, 10));
-        window.add(new JLabel("1"));
-        window.add(new JLabel("2"));
-        window.add(new JLabel("3"));
+        window = new JPanel(new GridLayout(2, 3, 10, 10));
+
+        JLabel defoggerModeLabel = new JLabel("DEFOGGER: ");
+
+        if (dON.isSelected()) {
+            defogger.TurnON();
+            dON.setSelected(true);
+        } else {
+            defogger.TurnOFF();
+            dOFF.setSelected(true);
+        }
+
+        window.add(defoggerModeLabel);
+        window.add(dON);
+        window.add(dOFF);
+
+        window.add(emptyLabel);
         createBackButton();
+        window.add(emptyLabel);
+
         add(window);
         window.updateUI();
     }

@@ -8,7 +8,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 class TestingRadioClass {
+=======
+public class TestingRadioClass {
+>>>>>>> 8727f70bcf54f4af4302bf7813edacbe594a7637
 
 	/// This method tests the Radio Class Constructor
 	@Test
