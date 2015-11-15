@@ -3,10 +3,10 @@ import javax.swing.*;
 import org.json.JSONException;
 
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.List;
+import se.walkercrou.places.Place;
 
 public class Phone extends JFrame {
 
@@ -18,7 +18,7 @@ public class Phone extends JFrame {
     private Defogger defogger;
 
     private JPanel window = new JPanel();
-    private JLabel emptyLabel = new JLabel("");
+    private JLabel emptyLabel = new JLabel(" ");
 
     private JRadioButton rON;
     private JRadioButton rOFF;
@@ -55,7 +55,7 @@ public class Phone extends JFrame {
         this.car = car;
 
         setTitle("McMaster Engineering Competition | 2015 | Programming | Phone");
-        setSize(400, 600);
+        setSize(600, 800);
 
         // HOME SCREEN
         radioButton = new JButton("Radio");
@@ -145,7 +145,7 @@ public class Phone extends JFrame {
         systemCheck = new SystemCheck("MEC Car", tires, 1000);
         
         // FUEL CHECK SCREEN
-        fuelCheck = new FuelMonitor(700);
+        fuelCheck = new FuelMonitor(70);
 
         home();
 
@@ -303,36 +303,45 @@ public class Phone extends JFrame {
 
     private void systemCheckSettings() {
         window.removeAll();
-        window = new JPanel(new GridLayout(10, 2, 10, 10));
+        window = new JPanel(new GridLayout(11, 2, 10, 10));
 
         JLabel oilLevel = new JLabel("Oil Level: ");
         JLabel oilCheckResult = new JLabel((systemCheck.Oil_Change_Result) ? "GOOD":"LOW");
         JLabel nextChange = new JLabel("Recommended Oil Change: ");
         JLabel oilChangeDist = new JLabel(systemCheck.getKMToNextOilChange() + " KM's");
         
-        JLabel tireCheck = new JLabel("Tire Check: ");
-        JLabel tFR = new JLabel("Front-Right Tire..... ");
-        JLabel tFL = new JLabel("Front-Left Tire..... ");
-        JLabel tRR = new JLabel("Rear-Right Tire..... ");
-        JLabel tRL = new JLabel("Rear-Left Tire..... ");
+        JLabel tFR = new JLabel("Front-Right Tire: ");
+        JLabel tFL = new JLabel("Front-Left Tire: ");
+        JLabel tRR = new JLabel("Rear-Right Tire: ");
+        JLabel tRL = new JLabel("Rear-Left Tire: ");
 
         Boolean[] results = systemCheck.Tire_Pressure_Check();
         JLabel tFRresult = new JLabel(results[0] ? "GOOD":"LOW");
         JLabel tFLresult = new JLabel(results[1] ? "GOOD":"LOW");
         JLabel tRRresult = new JLabel(results[2] ? "GOOD":"LOW");
         JLabel tRLresult = new JLabel(results[3] ? "GOOD":"LOW");
+        
+        List<Place> places = location.getRepairLocations("Honda Accord");
+        
+        JLabel repairOne = new JLabel("Recommended Repair Location #1: ");
+        JLabel repairTwo = new JLabel("Recommended Repair Location #2: ");
+        JLabel repairThree = new JLabel("Recommended Repair Location #3: ");
 
-        window.add(emptyLabel); window.add(emptyLabel);
+        JLabel repairOneResult = new JLabel(places.get(0).getName() + ": " + places.get(0).getAddress());
+        JLabel repairTwoResult = new JLabel(places.get(1).getName() + ": " + places.get(1).getAddress());
+        JLabel repairThreeResult = new JLabel(places.get(2).getName() + ": " + places.get(2).getAddress());
+
         window.add(oilLevel);
         window.add(oilCheckResult);
         window.add(nextChange);
         window.add(oilChangeDist);
-        window.add(tireCheck);
-        window.add(emptyLabel);
         window.add(tFR); window.add(tFRresult);
         window.add(tFL); window.add(tFLresult);
         window.add(tRR); window.add(tRRresult);
         window.add(tRL); window.add(tRLresult);
+        window.add(repairOne); window.add(repairOneResult);
+        window.add(repairTwo); window.add(repairTwoResult);
+        window.add(repairThree); window.add(repairThreeResult);
         
         createBackButton();
 
@@ -345,7 +354,7 @@ public class Phone extends JFrame {
         window = new JPanel(new GridLayout(3, 2, 10, 10));
         
         JLabel currentFuelLabel = new JLabel("Current Fuel: ");
-        JLabel currentFuel = new JLabel(String.valueOf(fuelCheck.getCurrentFuel()));
+        JLabel currentFuel = new JLabel(String.valueOf(fuelCheck.getCurrentFuel()) + "%");
         
         JLabel fuelStatusLabel = new JLabel("Current Fuel: ");
         JLabel fuelStatus = new JLabel(String.valueOf(fuelCheck.getStatus()));

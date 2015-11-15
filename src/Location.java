@@ -38,7 +38,6 @@ public class Location {
 	    location[1] = location[1].replace("}", "");
 	    
 	    return location;
-
 	}
 	
 	public List<Place> getRepairLocations(String make){
