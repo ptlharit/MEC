@@ -324,7 +324,7 @@ public class Phone extends JFrame {
         JLabel tRRresult = new JLabel(results[2] ? "GOOD":"LOW");
         JLabel tRLresult = new JLabel(results[3] ? "GOOD":"LOW");
         
-        List<Place> places = location.getRepairLocations("Honda Accord");
+        List<Place> places = location.getRepairLocations(this.make);
         
         JLabel repairOne = new JLabel("Recommended Repair Location #1: ");
         JLabel repairTwo = new JLabel("Recommended Repair Location #2: ");
