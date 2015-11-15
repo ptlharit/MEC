@@ -1,5 +1,5 @@
 
-public class Heating {
+class Heating {
 	private Mode status;
 	private int heatingLevel;
 	
@@ -23,8 +23,7 @@ public class Heating {
 		this.heatingLevel = 0;
 		System.out.println("status is: "+status+", heating level is: "+this.heatingLevel);
 	}	
-	
-	
+
 	public void increaseHeat(){
 		if(this.heatingLevel == 0 && this.status == Mode.OFF){
 			this.heatingLevel++;

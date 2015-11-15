@@ -5,7 +5,7 @@
  */
 
 /// This module allows the user to Turn a Car's Radio or Audio System ON/OFF, and change the Radio Frequency
-public class Radio 
+class Radio 
 {
 	// Global variables are PRIVATE for Information Protection and to increase program integrity
 	private Mode current_radio_mode;
@@ -29,8 +29,9 @@ public class Radio
 	}
 
 	/// Returns ON/OFF by examining the status of the Car's Radio
-	public String getCurrent_radio_mode() {	return (current_radio_mode == Mode.ON) ? "ON" : "OFF"; }
-
+	public String getCurrent_radio_mode() {
+		return (this.current_radio_mode == Mode.ON) ? "ON" : "OFF";
+	}
 
 	/// Sets the Car's Radio Mode to be ON or OFF, as specified by the final_mode value
 	private void setCurrent_radio_mode(Mode final_mode) {
@@ -40,8 +41,6 @@ public class Radio
 	/// This function turns ON the Radio in the car
 	public void TurnON()
 	{
-		setCurrent_radio_mode(Mode.ON);
-		System.out.println("Your Car Radio is " + getCurrent_radio_mode());
 		setCurrent_radio_mode(Mode.ON); // Turn ON the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
@@ -49,8 +48,6 @@ public class Radio
 	/// This function turns OFF the Radio in the car
 	public void TurnOFF()
 	{
-		setCurrent_radio_mode(Mode.OFF);
-		System.out.println("Your Car Radio is " + getCurrent_radio_mode());
 		setCurrent_radio_mode(Mode.OFF); // Turn OFF the radio
 		System.out.println("Your Car Radio is " + getCurrent_radio_mode().toString());
 	}
@@ -65,7 +62,7 @@ public class Radio
 	/// Sets the Car's Radio Frequency to setfrequency value. Note: The value of the setfrequency must be a double and has to be between 88 and 108
 	public void setCurrent_radio_frequency(double setfrequency)
 	{
-		if (setfrequency < 88 || setfrequency > 108) // Out of range Frequency
+		if (setfrequency < 0 || setfrequency > 108) // Out of range Frequency
 		{
 			System.out.println("The given set frequency is not valid");
 			System.out.println("Please enter a FM frequency between 88 MHz to 108 MHz");
