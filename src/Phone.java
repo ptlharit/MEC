@@ -219,6 +219,8 @@ public class Phone extends JFrame {
         window.removeAll();
         window = new JPanel(new GridLayout(2, 3, 10, 10));
 
+        heatLevelLabel = new JLabel(String.valueOf(heater.getHeatingLevel()));
+
         if (heater.getHeatingLevel() == 0) { decHEAT.setEnabled(false); }
         else if (heater.getHeatingLevel() == 5) { incHEAT.setEnabled(false); }
         else { decHEAT.setEnabled(true); incHEAT.setEnabled(true); }

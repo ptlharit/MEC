@@ -29,8 +29,8 @@ class Radio
 	}
 
 	/// Returns ON/OFF by examining the status of the Car's Radio
-	public Mode getCurrent_radio_mode() {
-		return this.current_radio_mode;
+	public String getCurrent_radio_mode() {
+		return (this.current_radio_mode == Mode.ON) ? "ON" : "OFF";
 	}
 
 	/// Sets the Car's Radio Mode to be ON or OFF, as specified by the final_mode value
@@ -69,7 +69,7 @@ class Radio
 		}
 		else // Frequency is in the range, so the system should change it
 		{
-			if (getCurrent_radio_mode() == Mode.ON) // Radio is ON
+			if (getCurrent_radio_mode() == "ON") // Radio is ON
 			{
 				this.current_radio_frequency = setfrequency;	
 			}
