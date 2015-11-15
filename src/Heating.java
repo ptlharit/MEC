@@ -1,5 +1,5 @@
 
-public class Heating {
+class Heating {
 	private Mode status;
 	private int heatingLevel;
 	
