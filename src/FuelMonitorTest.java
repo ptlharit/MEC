@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class FuelMonitorTest {
+class FuelMonitorTest {
 	private static FuelMonitor fuelMonitor;
 	private static GasFuelMonitor gFM;
 	private static ElectricFuelMonitor eFM;
