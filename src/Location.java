@@ -10,6 +10,10 @@ import java.util.List;
 import org.json.*;
 import org.apache.commons.io.IOUtils; 
 
+import se.walkercrou.places.GooglePlaces;
+import se.walkercrou.places.Param;
+import se.walkercrou.places.Place;
+
 
 public class Location {
 	
@@ -26,7 +30,7 @@ public class Location {
 		IOUtils.copy(conn.getInputStream(), output);
 	
 		output.close();
-	
+		System.out.println(output.toString());
 		JSONObject jsonObject = new JSONObject(output.toString());
 	    String lat = jsonObject.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").toString();
 		
@@ -36,7 +40,15 @@ public class Location {
 	    location[1] = location[1].replace("}", "");
 	    
 	    return location;
-	}	
+	}
+	
+	public List<Place> getRepairLocations(String make){
+		GooglePlaces client = new GooglePlaces("AIzaSyCCUcdjaHg0yPR9HDU1m5sNvtjxYoROFhg");
+		List<Place> places = client.getPlacesByQuery(make, GooglePlaces.MAXIMUM_RESULTS, Param.name("radius").value(2000), Param.name("location").value("43.2617486,-79.9227811"));
+	
+		return places;
+	}
+
 }
 
 
