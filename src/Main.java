@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//userauthentication(); // Perform User Authentication if successful then execute the rest else exit
+		userauthentication(); // Perform User Authentication if successful then execute the rest else exit
 		Car car = new Car ();
 		Phone phone = new Phone (car);
 	}
