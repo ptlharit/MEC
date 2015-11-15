@@ -1,5 +1,5 @@
 
-public class ElectricFuelMonitor extends FuelMonitor {
+class ElectricFuelMonitor extends FuelMonitor {
 	private int currentCharge;
 	
 	public ElectricFuelMonitor(int currentCharge){
