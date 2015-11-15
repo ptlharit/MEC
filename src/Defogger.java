@@ -5,7 +5,7 @@
  */
 
 /// This module allows the user to Turn a Car's Defogger ON/OFF
-public class Defogger {
+class Defogger {
 
 	private Mode car_defogger_mode; // private variable to track the mode of the defogger system
 
