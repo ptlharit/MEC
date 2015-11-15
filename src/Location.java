@@ -1,28 +1,19 @@
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-<<<<<<< HEAD
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import org.json.*;
 import org.apache.commons.io.IOUtils; 
 
-=======
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.List;
-
-import org.json.*;
-import org.apache.commons.io.IOUtils; 
 
 import se.walkercrou.places.GooglePlaces;
 import se.walkercrou.places.Param;
 import se.walkercrou.places.Place;
 
->>>>>>> ccb9b6f0cfe4960c710adf8297cdc853580111a3
+
 
 public class Location {
 	
@@ -39,11 +30,7 @@ public class Location {
 		IOUtils.copy(conn.getInputStream(), output);
 	
 		output.close();
-<<<<<<< HEAD
-	
-=======
-		System.out.println(output.toString());
->>>>>>> ccb9b6f0cfe4960c710adf8297cdc853580111a3
+
 		JSONObject jsonObject = new JSONObject(output.toString());
 	    String lat = jsonObject.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").toString();
 		
@@ -53,9 +40,7 @@ public class Location {
 	    location[1] = location[1].replace("}", "");
 	    
 	    return location;
-<<<<<<< HEAD
-	}	
-=======
+
 	}
 	
 	public List<Place> getRepairLocations(String make){
@@ -64,8 +49,12 @@ public class Location {
 	
 		return places;
 	}
+	
+	public static void main(String args[]) throws JSONException, IOException{
+		String[] temp = Location.getGeoLocation("McMaster University");
+		System.out.println(temp[0] + ", " + temp[1]);
+	}
 
->>>>>>> ccb9b6f0cfe4960c710adf8297cdc853580111a3
 }
 
 

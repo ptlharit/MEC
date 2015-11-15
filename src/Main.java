@@ -4,14 +4,9 @@ import java.awt.*;
 public class Main {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		
-		userauthentication(); // Perform User Authentication if successful then execute the rest else exit
-=======
 
 		userauthentication(); // Perform User Authentication if successful then execute the rest else exit
 		carmakeinput();
->>>>>>> ccb9b6f0cfe4960c710adf8297cdc853580111a3
 		Car car = new Car ();
 		Phone phone = new Phone (car);
 	}
