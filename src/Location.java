@@ -50,10 +50,10 @@ public class Location {
 		return places;
 	}
 	
-	public static void main(String args[]) throws JSONException, IOException{
-		String[] temp = Location.getGeoLocation("McMaster University");
-		System.out.println(temp[0] + ", " + temp[1]);
-	}
+//	public static void main(String args[]) throws JSONException, IOException{
+//		String[] temp = Location.getGeoLocation("McMaster University");
+//		System.out.println(temp[0] + ", " + temp[1]);
+//	}
 
 }
 
