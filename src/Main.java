@@ -4,11 +4,10 @@ import java.awt.*;
 public class Main {
 
 	public static void main(String[] args) {
-
-		userauthentication(); // Perform User Authentication if successful then execute the rest else exit
-		carmakeinput();
-		Car car = new Car ();
-		Phone phone = new Phone (car);
+		//userauthentication(); // Perform User Authentication if successful then execute the rest else exit
+		//carmakeinput();
+		Car car = new Car();
+		Phone phone = new Phone(car);
 	}
 
 	/// This function performs the user authentication. It asks the user for password and checks it. If Password tries are >= 3 then the program gets locked
@@ -63,9 +62,6 @@ public class Main {
 			{
 				// Do the mode stuff here
 			}
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			System.exit(0);
-		}
+		} catch (NullPointerException e) { }
 	}
 }

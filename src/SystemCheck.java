@@ -38,7 +38,7 @@ class SystemCheck {
 	}
 	
 	/// Returns a Boolean Array that contains the Tire_Pressure_Check Results. Returns false if the Tire Pressure in the tire is less then the 75% of the recommended value.
-	private Boolean[] Tire_Pressure_Check()
+	public Boolean[] Tire_Pressure_Check()
 	{
 		Boolean[] Results = new Boolean[4];
 		for (int i = 0; i < tire_pressure.length; i++)
@@ -60,7 +60,7 @@ class SystemCheck {
 	}
 	
 	/// Returns True or False if the Car Requires Oil Change or not. On, average car should get their Oil Change every 5,000 km.
-	private Boolean Oil_Change_Check()
+	public Boolean Oil_Change_Check()
 	{
 		if (this.kilometres_after_last_oil_change >= 5000.0) // Car Requires oil Change
 		{
@@ -73,4 +73,6 @@ class SystemCheck {
 			return true;
 		}
 	}
+	
+	public double getKMToNextOilChange() { return 5000-this.kilometres_after_last_oil_change; }
 }

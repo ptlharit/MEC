@@ -33,12 +33,16 @@ public class Phone extends JFrame {
     private JRadioButton dON;
     private JRadioButton dOFF;
     private ButtonGroup defoggerButtons;
+    
+    private SystemCheck systemCheck;
+    private FuelMonitor fuelCheck;
 
     private JButton radioButton;
     private JButton heatingButton;
     private JButton navigationButton;
     private JButton defogButton;
     private JButton updateButton;
+    private JButton fuelCheckButton;
     private JButton systemCheckButton;
     private JButton resetButton;
 
@@ -56,6 +60,7 @@ public class Phone extends JFrame {
         navigationButton = new JButton("Navigation");
         defogButton = new JButton("Defogger");
         updateButton = new JButton("UPDATE");
+        fuelCheckButton = new JButton("FUEL CHECK");
         systemCheckButton = new JButton("SYSTEM CHECK");
         resetButton = new JButton("RESET SETTINGS");
 
@@ -65,6 +70,7 @@ public class Phone extends JFrame {
         defogButton.addActionListener(e -> { defoggerSettings(); });
         updateButton.addActionListener(e -> {  });
         systemCheckButton.addActionListener(e -> { systemCheckSettings(); });
+        fuelCheckButton.addActionListener(e -> { fuelCheckSettings(); });
         resetButton.addActionListener(e -> { car.reset(this); });
 
         // RADIO SCREEN
@@ -127,6 +133,13 @@ public class Phone extends JFrame {
         defoggerButtons = new ButtonGroup();
         defoggerButtons.add(dON);
         defoggerButtons.add(dOFF);
+        
+        // SYSTEM CHECK SCREEN
+        double[] tires = {32.0, 29.0, 10.0, 57.7};
+        systemCheck = new SystemCheck("MEC Car", tires, 1000);
+        
+        // FUEL CHECK SCREEN
+        fuelCheck = new FuelMonitor(700);
 
         home();
 
@@ -145,7 +158,7 @@ public class Phone extends JFrame {
     public void reset() {
         radio.TurnOFF();
         heater.setHeat(0);
-        navigation.setLoc("0", "0");
+        navigation.setLoc("0", "0"); lon.setText("0"); lat.setText("0");
         defogger.TurnOFF();
     }
 
@@ -161,7 +174,8 @@ public class Phone extends JFrame {
         updateButton.setBackground(Color.GRAY.brighter());
         window.add(systemCheckButton);
         systemCheckButton.setBackground(Color.GRAY.brighter());
-        window.add(emptyLabel);
+        window.add(fuelCheckButton);
+        fuelCheckButton.setBackground(Color.GRAY.brighter());
         resetButton.setForeground(Color.WHITE);
         resetButton.setBackground(Color.RED);
         window.add(resetButton);
@@ -241,6 +255,9 @@ public class Phone extends JFrame {
         window.removeAll();
         window = new JPanel(new GridLayout(4, 2, 10, 10));
 
+        lon.setText(lon.getText());
+        lat.setText(lat.getText());
+        
         window.add(lonLabel);
         window.add(lon);
         window.add(latLabel);
@@ -284,14 +301,64 @@ public class Phone extends JFrame {
 
     private void systemCheckSettings() {
         window.removeAll();
-        window = new JPanel(new GridLayout(2, 3, 10, 10));
+        window = new JPanel(new GridLayout(10, 2, 10, 10));
 
+        JLabel oilLevel = new JLabel("Oil Level: ");
+        JLabel oilCheckResult = new JLabel((systemCheck.Oil_Change_Result) ? "GOOD":"LOW");
+        JLabel nextChange = new JLabel("Recommended Oil Change: ");
+        JLabel oilChangeDist = new JLabel(systemCheck.getKMToNextOilChange() + " KM's");
+        
+        JLabel tireCheck = new JLabel("Tire Check: ");
+        JLabel tFR = new JLabel("Front-Right Tire..... ");
+        JLabel tFL = new JLabel("Front-Left Tire..... ");
+        JLabel tRR = new JLabel("Rear-Right Tire..... ");
+        JLabel tRL = new JLabel("Rear-Left Tire..... ");
+
+        Boolean[] results = systemCheck.Tire_Pressure_Check();
+        JLabel tFRresult = new JLabel(results[0] ? "GOOD":"LOW");
+        JLabel tFLresult = new JLabel(results[1] ? "GOOD":"LOW");
+        JLabel tRRresult = new JLabel(results[2] ? "GOOD":"LOW");
+        JLabel tRLresult = new JLabel(results[3] ? "GOOD":"LOW");
+
+        window.add(emptyLabel); window.add(emptyLabel);
+        window.add(oilLevel);
+        window.add(oilCheckResult);
+        window.add(nextChange);
+        window.add(oilChangeDist);
+        window.add(tireCheck);
+        window.add(emptyLabel);
+        window.add(tFR); window.add(tFRresult);
+        window.add(tFL); window.add(tFLresult);
+        window.add(tRR); window.add(tRRresult);
+        window.add(tRL); window.add(tRLresult);
+        
         createBackButton();
 
         add(window);
         window.updateUI();
     }
 
+    private void fuelCheckSettings() {
+        window.removeAll();
+        window = new JPanel(new GridLayout(3, 2, 10, 10));
+        
+        JLabel currentFuelLabel = new JLabel("Current Fuel: ");
+        JLabel currentFuel = new JLabel(String.valueOf(fuelCheck.getCurrentFuel()));
+        
+        JLabel fuelStatusLabel = new JLabel("Current Fuel: ");
+        JLabel fuelStatus = new JLabel(String.valueOf(fuelCheck.getStatus()));
+
+        window.add(currentFuelLabel);
+        window.add(currentFuel);
+        window.add(fuelStatusLabel);
+        window.add(fuelStatus);
+        
+        createBackButton();
+
+        add(window);
+        window.updateUI();
+    }
+    
     private void createBackButton() {
         backButton = new JButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
