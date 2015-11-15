@@ -51,4 +51,4 @@ fabric.properties
 # Java
 .classpath
 .project
-.jar
+*.jar
